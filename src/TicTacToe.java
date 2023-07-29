@@ -10,9 +10,10 @@ public class TicTacToe {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         while (true) {
-            clearBoard();
+            clearBoard(); //This function clears the game board, preparing it for a new game or a fresh round.
             display();
-
+//This is an outer infinite loop that keeps the game running indefinitely until the players choose not to play again.
+//The while (true) condition creates an infinite loop that will only be terminated if a break statement is encountered.
             while (true) {
                 //get the coordinates for the move which should be 1 – 3 for the row and col
                 //convert the player move coordinates to the array indices which are 0 – 2 by subtracting 1
@@ -28,16 +29,22 @@ public class TicTacToe {
                 //appropriate check for a win or a tie
                 //(i.e. if it is possible for a win or a tie at this point in the game, check for it.)
                 //If there is a win or tie announce it and then prompt the players to play again.
-                if (isWin(currentPlayer)) {
+                if (isWin(currentPlayer))
+                {
                     System.out.println("Player " + currentPlayer + " wins!");
                     break;
-                } else if (isTie()) {
+                }
+                else if (isTie())
+                {
                     System.out.println("It's a tie!");
                     break;
                 }
-                currentPlayer = (currentPlayer.equals("X")) ? "O" : "X"; //Toggle the player (i.e. X becomes O, O becomes X)
+                //Regardless of whether the game has ended in a win or a tie, this line switches the turn to the other player.
+                //It uses a ternary operator to check if the current player is "X." If so, it sets the currentPlayer to "O," otherwise to "X."
+                currentPlayer = (currentPlayer.equals("X")) ? "O" : "X";
             }
-
+//If the user enters 'n' (no) or anything other than 'y' (yes), the condition becomes true, and the if block {breaks} will execute.
+            // the if block with the break; statement will have no effect until the loop while(true){} is terminated
             if (!SafeInput.getYNConfirm(in, "Play again? (y/n): ")) {
                 break;
             }
